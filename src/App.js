@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Map from "./components/Map";
+import SearchBox from "./components/SearchBox";
+import "./App.css";
 
 function App() {
+  const [regionData, setRegionData] = useState({
+    position: [13.0827, 80.2707],
+    placeName: "Chennai",
+  });
+
+  const regionCoordinates = (coordinates) => {
+    setRegionData(coordinates);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="heading">Locate on Map</h1>
+      <SearchBox coordinates={regionCoordinates} />
+      <Map regionData={regionData} />
     </div>
   );
 }
